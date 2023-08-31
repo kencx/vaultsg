@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+TOKEN="dev-only-token"
+
+docker run -p 8200:8200 hashicorp/vault:1.14 server -dev -dev-root-token-id=$TOKEN
+
+# curl --header "X-Vault-Token: $TOKEN" -X POST --data-raw '{"type": "kv"}' http://localhost:8200/v1/sys/mounts/kvv2
+# curl --header "X-Vault-Token: $TOKEN" http://localhost:8200/v1/sys/mounts | jq .
